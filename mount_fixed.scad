@@ -41,8 +41,8 @@ screw_offset = 5;
 // mount slot for both top and bottom parts
 module mount_slot() {
     union() {
-        translate([mount_slot_x - hb_h/2,0,mount_slot_d]) cube([hb_h, mount_w+delt2, hb_w]);
-        translate([mount_slot_x - 6,0,mount_slot_d]) cube([hb_h_h, mount_w+delt2, hb_w_h]);
+        translate([mount_slot_x - hb_h/2,-delt,mount_slot_d]) cube([hb_h, mount_w+delt2, hb_w]);
+        translate([mount_slot_x - 6,-delt,mount_slot_d]) cube([hb_h_h, mount_w+delt2, hb_w_h]);
     }
 }
 
@@ -95,13 +95,13 @@ module mount_body() {
 module mount_top() {
     difference() {
         mount_body();
-        translate([0,0,mount_slot_d + hb_w]) cube([mount_h,mount_w,mount_d - mount_slot_d]);
+        translate([0,-delt,mount_slot_d + hb_w]) cube([mount_h,mount_w+2*delt,mount_d - mount_slot_d]);
     }
 }
 
 module mount_bottom() {
     difference() {
         mount_body();
-        cube([mount_h,mount_w,mount_slot_d + hb_w]);
+        translate([0,-delt,-delt]) cube([mount_h,mount_w+2*delt,mount_slot_d + hb_w+delt]);
     }
 }
